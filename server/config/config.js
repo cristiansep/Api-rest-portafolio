@@ -36,12 +36,12 @@ process.env.SEED = process.env.SEED || 'este-es-el-seed-de-prueba';
 //=====================================
 let urlDB;
 
-// if(process.env.NODE_ENV === 'dev'){
+if(process.env.NODE_ENV === 'dev'){
 
-//     urlDB ='mongodb://localhost:27017/portafolioDB'
-// }else{
+    urlDB ='mongodb://localhost:27017/portafolioDB'
+}else{
     urlDB = 'mongodb+srv://cristiansep:<OeukAiAhVQlSesvl>@cluster0-y4is6.mongodb.net/portafolioDB'
-// }
+}
 
 process.env.URLDB = urlDB;
 
