@@ -2,6 +2,7 @@ require('./config/config');
 
 const express = require('express');
 const mongoose = require('mongoose'); mongoose.set('useCreateIndex', true); mongoose.set('useFindAndModify', false);
+const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -19,6 +20,10 @@ app.use(function(req, res, next) {
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
+//Habilitar carpeta public
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 
 
