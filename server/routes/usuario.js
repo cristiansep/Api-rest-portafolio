@@ -75,7 +75,7 @@ app.get("/", (req, res, next) => {
 //------------------------//
 //    Actualizar  //
 //------------------------//
-app.put('/:id',(req,res) => {
+app.put('/:id',mdAutenticacion.verificaToken ,(req,res) => {
 
   let id = req.params.id;
   let body = req.body;
@@ -105,7 +105,6 @@ app.put('/:id',(req,res) => {
     usuario.nombre = body.nombre;
     usuario.nick = body.nick;
     usuario.perfil = body.perfil;
-    // usuario.password = bcrypt.hashSync(body.password,10);
     usuario.email = body.email;
     usuario.telefono = body.telefono;
     usuario.direccion = body.direccion;
