@@ -1,3 +1,5 @@
+require('./config/config');
+
 const express = require('express');
 const mongoose = require('mongoose'); mongoose.set('useCreateIndex', true); mongoose.set('useFindAndModify', false);
 const bodyParser = require('body-parser');
@@ -33,7 +35,7 @@ const imagenesRoutes = require('./routes/imagenes');
 
 
 // Conexion a la base de datos con ODM mongoose
-mongoose.connection.openUri('mongodb://localhost:27017/portafolioDB', 
+mongoose.connection.openUri(process.env.URLDB, 
         {useNewUrlParser: true,useUnifiedTopology: true }, (err,res) =>{
 
     if(err) throw err;
@@ -58,6 +60,6 @@ app.use('/', appRoutes);
 
 
 
-app.listen(3000,()=>{
-    console.log('Escuchando puerto 3000: \x1b[34m%s\x1b[0m','online');
+app.listen(process.env.PORT,()=>{
+    console.log('Escuchando puerto:',process.env.PORT, '\x1b[34m%s\x1b[0m','online');
 });
