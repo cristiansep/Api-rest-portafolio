@@ -32,6 +32,45 @@ app.get("/", (req, res, next) => {
 });
 
 
+//------------------------//
+//     Crea usuarios      //
+//------------------------//
+app.post('/',(req,res)=> {
+
+  let body = req.body;
+
+  let usuario = new Usuario({
+    nombre: body.nombre,
+    nick: body.nombre,
+    perfil: body.perfil,
+    email: body.email,
+    password: bcrypt.hashSync(body.password,10),
+    img: body.img,
+    telefono: body.telefono,
+    direccion: body.direccion,
+    desc: body.desc
+  });
+
+  usuario.save((err,usuarioGuardado) =>{
+
+    if (err) {
+      return res.status(400).json({
+        ok: false,
+        mensaje: "Error al crear usuario",
+        errors: err
+      });
+    }
+
+      res.status(201).json({
+        ok: true,
+        usuario: usuarioGuardado,
+        usuarioToken: req.usuario
+      });
+  });
+
+});
+
+
 
 //------------------------//
 //    Actualizar  //
