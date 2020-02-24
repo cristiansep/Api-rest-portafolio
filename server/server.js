@@ -36,7 +36,7 @@ const imagenesRoutes = require('./routes/imagenes');
 
 // Conexion a la base de datos con ODM mongoose
 mongoose.connection.openUri(process.env.URLDB, 
-        {useNewUrlParser: true , useCreateIndex: true ,useUnifiedTopology: true }, (err,res) =>{
+        {useNewUrlParser: true , useCreateIndex: true , useUnifiedTopology: true }, (err,res) =>{
 
     if(err) throw err;
 
