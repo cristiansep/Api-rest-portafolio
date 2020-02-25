@@ -9,6 +9,11 @@ const Usuario = require('../models/usuario');
 // const Medico = require('../models/medico');
 const Proyecto = require('../models/proyecto');
 
+// cloudinary
+var cloudinary = require('cloudinary');
+var cloudinary = require('cloudinary').v2;
+
+
 app.use(fileUpload());
 
 app.put('/:tipo/:id',(req,res,next) => {
@@ -60,6 +65,7 @@ app.put('/:tipo/:id',(req,res,next) => {
 
     // Mover archivo temporal a un path
     let path = `./uploads/${tipo}/${nombreArchivo}`;
+  
 
     archivo.mv(path, err =>{
         
@@ -74,10 +80,28 @@ app.put('/:tipo/:id',(req,res,next) => {
      
 
         subirPorTipo(tipo, id, nombreArchivo, res);
+      
     });
+
+   
 
   
 });
+
+
+// async function subirFotoNube(path) {
+//     cloudinary.config({ 
+//         cloud_name: 'cristiansep', 
+//         api_key: '394173737757678', 
+//         api_secret: 'CLOUDINARY_URL=cloudinary://394173737757678:vpjbLbNdOxAJzS-sPlCxa8SwsVY@cristiansep' 
+//       });
+
+//       var img = await cloudinary.uploader.upload(path);
+//       console.log(img);
+// }
+
+
+
 
 
 
@@ -121,6 +145,9 @@ function subirPorTipo(tipo, id, nombreArchivo, res){
 
     }
 
+ 
+
+
     // if(tipo === 'medicos'){
         
     //     Medico.findById(id, (err,medico) =>{
@@ -155,6 +182,8 @@ function subirPorTipo(tipo, id, nombreArchivo, res){
 
     //     });
     // }
+
+
 
     if(tipo === 'proyectos'){
 
